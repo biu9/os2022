@@ -174,6 +174,8 @@ $ docker run --name oslab -it -v ${HOME}:/have-fun-debugging oslab:2021 bash    
 
 从 [https://www.kernel.org](https://www.kernel.org) 下载最新的 Linux 源码。
 
+> Tips: 本地测试发现，较新版本的 Linux 源码编译后，可能因地址随机化导致 gdb 断点不生效。这里可尝试下载多个版本的 Linux 源码编译实验，对比效果（本地测试 5.14.4 版本可正常调试）。
+
 并且使用 git 工具 clone [本仓库](https://gitee.com/zjusec/os22fall-stu)。其中已经准备好了根文件系统的镜像。
 
 > 根文件系统为 Linux Kenrel 提供了基础的文件服务，在启动 Linux Kernel 时是必要的。
@@ -223,11 +225,12 @@ $ riscv64-unknown-linux-gnu-gdb path/to/linux/vmlinux
 (gdb) quit                  # 退出 gdb
 ```
 
-## 5 实验任务与要求
+## 5 实验任务与要求（包括截止时间）
 
-- 请各位同学独立完成作业，任何抄袭行为都将使本次作业判为0分。
-- 编译内核并用 GDB + QEMU 调试，在内核初始化过程中设置断点，对内核的启动过程进行跟踪，并尝试使用gdb的各项命令（如backtrace、finish、frame、info、break、display、next、layout等）。
-- 在学在浙大中提交 pdf 格式的实验报告，记录实验过程并截图（4.1-4.4）.，对每一步的命令以及结果进行必要的解释，记录遇到的问题和心得体会。
+- 请各位同学独立完成作业，任何抄袭行为都将使本次作业判为 0 分。
+- lab0 的实验报告请在 **10.6 号之前**提交；课堂验收请在 **10.13 号之前**的周四晚课上完成！
+- 编译内核并用 GDB + QEMU 调试，在内核初始化过程中设置断点，对内核的启动过程进行跟踪，并尝试使用 gdb 的各项命令（如 backtrace、finish、frame、info、break、display、next、layout 等）。
+- **提交 pdf 格式作业文件**的链接在课程钉钉群公告中。记录实验过程并截图（4.1-4.4）.，对每一步的命令以及结果进行必要的解释，记录遇到的问题和心得体会。
 
 ## 思考题
 
