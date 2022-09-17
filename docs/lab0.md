@@ -152,15 +152,15 @@ REPOSITORY       TAG       IMAGE ID       CREATED        SIZE
 oslab            2021      8c15472cd111   5 months ago   3.63GB
 
 # 从镜像创建一个容器
-$ docker run --name oslab -it oslab:2021 bash   # --name:容器名称 -i:交互式操作 -t:终端
+$ docker run --name oslab-test -it oslab:2021 bash   # --name:容器名称 -i:交互式操作 -t:终端
 root@132a140bd724:/#                            # 提示符变为 '#' 表明成功进入容器 后面的字符串根据容器而生成，为容器id
 root@132a140bd724:/# exit (or CTRL+D)           # 从容器中退出 此时运行docker ps，运行容器的列表为空
 
 # 启动处于停止状态的容器
-$ docker start oslab        # oslab为容器名称
-$ docker ps                 # 可看到容器已经启动
+$ docker start oslab-test        # oslab为容器名称
+$ docker ps -a                # 可看到容器已经启动
 CONTAINER ID   IMAGE          COMMAND         CREATED          STATUS         PORTS                    NAMES
-234326b4094e   oslab:2021     "/bin/bash"     5 seconds ago    Up 4 seconds                            compassionate_goldwasser
+234326b4094e   oslab:2021     "/bin/bash"     5 seconds ago    Up 4 seconds                            oslab-test
 
 # 从终端连入 docker 容器
 $ docker exec -it oslab bash
