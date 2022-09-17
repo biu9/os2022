@@ -163,7 +163,7 @@ CONTAINER ID   IMAGE          COMMAND         CREATED          STATUS         PO
 234326b4094e   oslab:2021     "/bin/bash"     5 seconds ago    Up 4 seconds                            oslab-test
 
 # 从终端连入 docker 容器
-$ docker exec -it oslab bash
+$ docker exec -it oslab bash-test
 
 # 挂载本地目录
 # 把用户的 home 目录映射到 docker 镜像内的 have-fun-debugging 目录
