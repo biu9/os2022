@@ -222,6 +222,7 @@ $ riscv64-unknown-linux-gnu-gdb path/to/linux/vmlinux
 (gdb) target remote :1234   # 连接 qemu
 (gdb) b start_kernel        # 设置断点
 (gdb) continue              # 继续执行
+(gdb) ni                    # 在断点处，调试单条指令
 (gdb) quit                  # 退出 gdb
 ```
 
