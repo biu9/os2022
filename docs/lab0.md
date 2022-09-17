@@ -176,12 +176,12 @@ $ docker run --name oslab -it -v ${HOME}:/have-fun-debugging oslab:2021 bash    
 
 > Tips: 本地测试发现，较新版本的 Linux 源码编译后，可能因地址随机化导致 gdb 断点不生效。这里可尝试下载多个版本的 Linux 源码编译实验，对比效果（本地测试 5.14.4 版本可正常调试）。
 
-并且使用 git 工具 clone [本仓库](https://gitee.com/zjusec/os22fall-stu)。其中已经准备好了根文件系统的镜像。
+并且使用 git 工具 clone [本仓库](https://gitee.com/zju_xiayingjie/os22fall-stu)。其中已经准备好了根文件系统的镜像。
 
 > 根文件系统为 Linux Kenrel 提供了基础的文件服务，在启动 Linux Kernel 时是必要的。
 
 ```bash
-$ git clone https://gitee.com/zjusec/os22fall-stu
+$ git clone git@gitee.com:zju_xiayingjie/os22fall-stu.git
 $ cd os22fall-stu/src/lab0
 $ ls
 rootfs.img  # 已经构建完成的根文件系统的镜像
