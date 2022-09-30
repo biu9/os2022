@@ -17,7 +17,7 @@
 - [RISC-V Assembly Programmer's Manual](https://github.com/riscv-non-isa/riscv-asm-manual/blob/master/riscv-asm.md)
 - [RISC-V Unprivileged Spec](https://github.com/riscv/riscv-isa-manual/releases/download/Ratified-IMAFDQC/riscv-spec-20191213.pdf)
 - [RISC-V Privileged Spec](https://github.com/riscv/riscv-isa-manual/releases/download/Ratified-IMFDQC-and-Priv-v1.11/riscv-privileged-20190608.pdf)
-- [RISC-V 手册（中文）](http://crva.ict.ac.cn/documents/RISC-V-Reader-Chinese-v2p1.pdf)
+- [RISC-V 手册（中文）](http://riscvbook.com/chinese/RISC-V-Reader-Chinese-v2p1.pdf)
 
 > 注：RISC-V 手册（中文）中有一些 Typo，请谨慎参考。
 
