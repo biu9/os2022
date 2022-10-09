@@ -1,13 +1,25 @@
-#include "print.h"
 #include "sbi.h"
 
 void puts(char *s) {
     // unimplemented
-    struct sbiret ret;
-    res = sbi_ecall(0x1, 0x0, (uint64)s, 0, 0, 0, 0, 0);
-    printf("%d",res.value);
+    while(*s) {
+        sbi_ecall(0x1, 0x0, *s, 0, 0, 0, 0, 0);
+        s++;
+    }
 }
 
 void puti(int x) {
     // unimplemented
+    int reverse = 0;
+    while(x > 0) {
+        reverse += x%10;
+        x /= 10;
+        reverse *= 10;
+    }
+    reverse /= 10;
+    while(reverse > 0) {
+        int tmp = reverse % 10;
+        sbi_ecall(0x1, 0x0, tmp+48, 0, 0, 0, 0, 0);
+        reverse /= 10;
+    }
 }
