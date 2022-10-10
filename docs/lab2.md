@@ -152,7 +152,7 @@ trap 处理程序根据 `scause` 的值， 进入不同的处理逻辑，在本�
 ### 4.2 开启 trap 处理
 在运行 `start_kernel` 之前，我们要对上面提到的 CSR 进行初始化，初始化包括以下几个步骤：
 
-1. 设置 `stvec`， 将 `_traps` ( `_trap` 在 4.3 中实现 ) 所表示的地址写入 `stvec`，这里我们采用 `Direct 模式`, 而 `_traps` 则是 trap 处理入口函数的基地址。
+1. 设置 `stvec`， 将 `_traps` ( `_traps` 在 4.3 中实现 ) 所表示的地址写入 `stvec`，这里我们采用 `Direct 模式`, 而 `_traps` 则是 trap 处理入口函数的基地址。
 2. 开启时钟中断，将 `sie[STIE]` 置 1。
 3. 设置第一次时钟中断，参考 `clock_set_next_event()` ( `clock_set_next_event()` 在 4.5 中介绍 ) 中的逻辑用汇编实现。
 4. 开启 S 态下的中断响应， 将 `sstatus[SIE]` 置 1。
@@ -191,7 +191,7 @@ _start:
 
     ...
 ```
-> Debug 提示：可以先不实现 stvec 和 first time interrupt，先关注 sie 和 sstatus 是否设置正确。
+> Debug 提示：可以先不实现 `stvec` 和 first time interrupt，先关注 `sie` 和 `sstatus` 是否设置正确。
 
 ### 4.3 实现上下文切换
 我们要使用汇编实现上下文切换机制， 包含以下几个步骤：
