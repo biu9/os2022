@@ -20,8 +20,13 @@ theme:
 nav:
   - 实验指导零: lab0.md
   - 实验指导一: lab1.md
+<<<<<<< HEAD
   # - 实验指导二: lab2.md
   # - 实验指导三: lab3.md
+=======
+  - 实验指导二: lab2.md
+  - 实验指导三: lab3.md
+>>>>>>> 15d84bd075ff41204fca30708f587ac4f67c3c23
   # - 实验指导四: lab4.md
   # - 实验指导五: lab5.md
   # - 实验指导六: lab6.md

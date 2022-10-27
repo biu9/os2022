@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+#include "print.h"
+>>>>>>> 15d84bd075ff41204fca30708f587ac4f67c3c23
 #include "sbi.h"
 
 void puts(char *s) {

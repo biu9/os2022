@@ -17,7 +17,11 @@
 - [RISC-V Assembly Programmer's Manual](https://github.com/riscv-non-isa/riscv-asm-manual/blob/master/riscv-asm.md)
 - [RISC-V Unprivileged Spec](https://github.com/riscv/riscv-isa-manual/releases/download/Ratified-IMAFDQC/riscv-spec-20191213.pdf)
 - [RISC-V Privileged Spec](https://github.com/riscv/riscv-isa-manual/releases/download/Ratified-IMFDQC-and-Priv-v1.11/riscv-privileged-20190608.pdf)
+<<<<<<< HEAD
 - [RISC-V 手册（中文）](http://crva.ict.ac.cn/documents/RISC-V-Reader-Chinese-v2p1.pdf)
+=======
+- [RISC-V 手册（中文）](http://riscvbook.com/chinese/RISC-V-Reader-Chinese-v2p1.pdf)
+>>>>>>> 15d84bd075ff41204fca30708f587ac4f67c3c23
 
 > 注：RISC-V 手册（中文）中有一些 Typo，请谨慎参考。
 
@@ -358,5 +362,11 @@ sbi_ecall 函数中，需要完成以下内容：
 2. 编译之后，通过 System.map 查看 vmlinux.lds 中自定义符号的值
 
 ## 作业提交
+<<<<<<< HEAD
 - 同学需要提交**实验报告以及整个工程代码**（压缩包格式）。在提交前请使用 `make clean` 清除所有构建产物。
 - 实验报告截止时间：待定。验收截止时间：待定。
+=======
+- 同学需要提交 **pdf 格式实验报告以及整个工程代码（两者放到压缩包中）**。对于工程代码，在提交前请使用 `make clean` 清除所有构建产物。
+- 实验报告截止时间：**10.20 号之前**。
+- 验收截止时间：**10.27 号之前**。
+>>>>>>> 15d84bd075ff41204fca30708f587ac4f67c3c23
