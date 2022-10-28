@@ -1,8 +1,31 @@
-extern start_kernel
+.extern start_kernel
 
-    .section .text.init         <- 将 _start 放入.text.init section 
+    .section .text.init
     .globl _start
 _start:
+
+    # YOUR CODE HERE
+
+    # ------------------
+        
+        # set stvec = _traps
+        la t0, _traps
+        csrw stvec, t0
+    
+    # ------------------
+    
+        # set sie[STIE] = 1
+        csrs sie,(1 << 1)
+    
+    # ------------------
+    
+        # set first time interrupt
+    
+    # ------------------
+    
+        # set sstatus[SIE] = 1
+        csrs sstatus, (1 << 1)
+
     # ------------------
     # - your code here -
     # ------------------

@@ -20,8 +20,8 @@ SECTIONS
     .text : ALIGN(0x1000){
         _stext = .;
 
-        *(.text.init)      <- 加入了 .text.init
-        *(.text.entry)     <- 之后我们实现 中断处理逻辑 会放置在 .text.entry
+        *(.text.init)      
+        *(.text.entry)     
         *(.text .text.*)
         
         _etext = .;
