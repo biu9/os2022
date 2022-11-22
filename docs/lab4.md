@@ -416,3 +416,4 @@ create_mapping(uint64 *pgtbl, uint64 va, uint64 pa, uint64 sz, int perm) {
 
 ## 作业提交
 同学需要提交实验报告以及整个工程代码，在提交前请使用 `make clean` 清除所有构建产物。
+实验报告接收截止时间2022/12/16；实验验收截止时间2022/12/23
