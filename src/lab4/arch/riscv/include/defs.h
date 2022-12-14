@@ -17,7 +17,9 @@
 
 #define PA2VA_OFFSET (VM_START - PHY_START)
 
-#include "types.h"
+// #include "types.h"
+
+typedef unsigned long uint64;
 
 #define csr_read(csr)                       \
 ({                                          \
