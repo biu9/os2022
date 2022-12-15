@@ -66,9 +66,7 @@ void setup_vm_final(void) {
     printk("swapper_pg_dir = %lx\n", (uint64)swapper_pg_dir);
     uint64 val = (uint64)swapper_pg_dir - PA2VA_OFFSET; // pa = va - PA2VA_OFFSET
     val = val >> 12; // ppn = pa >> 12
-    uint64 tmp = 1;
-    tmp = tmp << 63;
-    val = val | tmp;    
+    val = val | 0x8000000000000000;    
     printk("val = %lx\n", val);
 
     __asm__ volatile (
@@ -112,7 +110,6 @@ create_mapping(uint64 *pgtbl, uint64 va, uint64 pa, uint64 sz, int perm) {
         //取出va + i * 0x1000的[20, 12]位作为vpn0
         uint64 vpn0 = ((va + i * 0x1000) & 0x00000000001FF000) >> 12;
 
-        //printk("\nFirst Page\n");
         uint64 fpte = *(uint64*)((uint64)pgtbl + (vpn2 << 3));
         if(!(fpte & 0x1)) {
             uint64 content = kalloc() - PA2VA_OFFSET;
@@ -122,7 +119,6 @@ create_mapping(uint64 *pgtbl, uint64 va, uint64 pa, uint64 sz, int perm) {
         
         *(uint64*)((uint64)pgtbl + (vpn2 << 3)) = fpte;
 
-        //printk("\nSecond Page\n");
         uint64 spa = ((fpte & 0x003FFFFFFFFFFFC00) << 2) + (vpn1 << 3) + PA2VA_OFFSET;
         uint64 spte = *(uint64*)(spa);
         if(!(spte & 0x1)) {
@@ -133,7 +129,6 @@ create_mapping(uint64 *pgtbl, uint64 va, uint64 pa, uint64 sz, int perm) {
         
         *(uint64*)(spa) = spte;
 
-        //printk("\nThird Page\n");
         uint64 tpa = ((spte & 0x003FFFFFFFFFFFC00) << 2) + (vpn0 << 3) + PA2VA_OFFSET;
         uint64 tpte = ((curpa & 0x00FFFFFFFFFFF000) >> 2) | perm;
         *(uint64*)(tpa) = tpte;
