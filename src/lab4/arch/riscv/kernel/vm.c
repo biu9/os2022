@@ -100,37 +100,33 @@ create_mapping(uint64 *pgtbl, uint64 va, uint64 pa, uint64 sz, int perm) {
    printk("pgtbl = %lx, va = %lx, pa = %lx, sz = %lx, perm = %d\n", pgtbl, va, pa, sz, perm);
    int page_num = (page_num % 0x1000) ? ((sz >> 12) + 1) : (sz >> 12);
    for(int i = 0; i < page_num; i++) {
-        uint64 curva = va + i * 0x1000;
-        uint64 curpa = pa + i * 0x1000;
+        uint64 addr_va = va + i * PGSIZE;
+        uint64 addr_pa = pa + i * PGSIZE;
 
-        //取出va + i * 0x1000的[38, 30]位作为vpn2
-        uint64 vpn2 = ((va + i * 0x1000) & 0x0000007FC0000000) >> 30;
-        //取出va + i * 0x1000的[29, 21]位作为vpn1
-        uint64 vpn1 = ((va + i * 0x1000) & 0x000000003FE00000) >> 21;
-        //取出va + i * 0x1000的[20, 12]位作为vpn0
-        uint64 vpn0 = ((va + i * 0x1000) & 0x00000000001FF000) >> 12;
+        uint64 vpn2 = (addr_va >> 30) & 0x1FF;
+        uint64 vpn1 = (addr_va >> 21) & 0x1FF;
+        uint64 vpn0 = (addr_va >> 12) & 0x1FF;
 
-        uint64 fpte = *(uint64*)((uint64)pgtbl + (vpn2 << 3));
+        uint64 fpte = pgtbl[vpn2];
+        
         if(!(fpte & 0x1)) {
             uint64 content = kalloc() - PA2VA_OFFSET;
-            fpte = (content & 0x00FFFFFFFFFFF000) >> 2;
-            fpte = fpte | 0x1;
+            fpte = (content & 0x00FFFFFFFFFFF000) >> 2 | 1;
+            pgtbl[vpn2] =  fpte;
         }
-        
-        *(uint64*)((uint64)pgtbl + (vpn2 << 3)) = fpte;
 
-        uint64 spa = ((fpte & 0x003FFFFFFFFFFFC00) << 2) + (vpn1 << 3) + PA2VA_OFFSET;
-        uint64 spte = *(uint64*)(spa);
-        if(!(spte & 0x1)) {
+        uint64* pgtbl_2;
+        pgtbl_2 = (uint64*)(((fpte & 0x003FFFFFFFFFFFC00) << 2) + PA2VA_OFFSET);
+        uint64 spte = pgtbl_2[vpn1];
+        if(!(spte & 0x1)) { 
             uint64 content = kalloc() - PA2VA_OFFSET;
-            spte = (content & 0x00FFFFFFFFFFF000) >> 2;
-            spte = spte | 0x1;
+            spte = (content & 0x00FFFFFFFFFFF000) >> 2 | 1;
+            pgtbl_2[vpn1] = spte;
         }
         
-        *(uint64*)(spa) = spte;
-
-        uint64 tpa = ((spte & 0x003FFFFFFFFFFFC00) << 2) + (vpn0 << 3) + PA2VA_OFFSET;
-        uint64 tpte = ((curpa & 0x00FFFFFFFFFFF000) >> 2) | perm;
-        *(uint64*)(tpa) = tpte;
+        uint64* pgtbl_3;
+        pgtbl_3 = (uint64*)(((spte & 0x003FFFFFFFFFFFC00) << 2) + PA2VA_OFFSET);
+        uint64 tpte = ((addr_pa & 0x00FFFFFFFFFFF000) >> 2) | perm;
+        pgtbl_3[vpn0] = tpte;
    }
 }
