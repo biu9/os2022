@@ -10,7 +10,7 @@
 
 #include "types.h"
 
-#define NR_TASKS  5//(1 + 31) // 用于控制 最大线程数量 （idle 线程 + 31 内核线程）
+#define NR_TASKS  32//(1 + 31) // 用于控制 最大线程数量 （idle 线程 + 31 内核线程）
 
 #define TASK_RUNNING    0 // 为了简化实验, 所有的线程都只有一种状态
 
