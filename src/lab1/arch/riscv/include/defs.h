@@ -6,7 +6,7 @@
 #define csr_read(csr)                       \
 ({                                          \
     register uint64 __v;                    \
-    /* unimplemented */                     \
+    asm volatile ("csrr" #csr ",%0" :: "m"(__v) : "memory");                     \
     __v;                                    \
 })
 
